@@ -5,7 +5,7 @@ metadata:
   labels:
     app: licence
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: licence
@@ -16,25 +16,9 @@ spec:
     spec:
       containers:
         - name: licence
-          image: gabicatalin98/licence:0.0.1-SNAPSHOT
+          image: sara4cristina/licence:0.0.6-SNAPSHOT
           ports:
             - containerPort: 8082
-          env:
-            - name: SPRING_CONFIG_IMPORT
-              valueFrom:
-                configMapKeyRef:
-                  name: gabicatalin98-configmap
-                  key: SPRING_CONFIG_IMPORT
-            - name: SPRING_PROFILES_ACTIVE
-              valueFrom:
-                configMapKeyRef:
-                  name: gabicatalin98-configmap
-                  key: SPRING_PROFILES_ACTIVE
-            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              valueFrom:
-                configMapKeyRef:
-                  name: gabicatalin98-configmap
-                  key: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
 ---
 apiVersion: v1
 kind: Service
